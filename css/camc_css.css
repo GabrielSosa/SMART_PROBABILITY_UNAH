@@ -1,0 +1,88 @@
+
+body {
+  /*min-height: 2000px;*/
+  padding-top: 50px;
+  background-color: black;
+  /*
+ background: url(../img/html5_two.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  */
+}
+
+footer{
+	/*position: fixed;*/
+	bottom: 0;
+	height: 120px;
+	width: 100%;
+	text-align: center;	
+	background-color: #FEFEFF;
+}
+
+.contenidoPrimario{
+	
+	background-color: #222222;
+	color: #fff;
+}
+
+.contenidoSegundario{
+	
+	background-color: #DAE2EC;
+	color: black;
+	margin: 10px 10px 10px 10px;
+	padding: 10px 10px 10px 10px;
+	width: 100%;
+}
+
+.subContenidoSegundarioP{
+
+	background-color: #56ab50;
+	color: #fff;
+	margin: 5px 5px 5px 5px;
+	padding: 5px 5px 5px 5px;
+}
+
+.subContenidoSegundarioS{
+
+	background-color: #5f5f5f;
+	color: #fff;
+	margin: 5px 5px 5px 5px;
+	padding: 5px 5px 5px 5px;
+}
+
+.subContenidoSegundarioT{
+
+	background-color: #fff;
+	color: #222222;
+	margin: 5px 5px 5px 5px;
+	padding: 5px 5px 5px 5px;
+}
+
+.tamanopequeno{
+	width: 25%;
+	height: 25%;
+}
+.tamanomediano{
+	width: 50%;
+	height: 50%;
+}
+.tamanogrande{
+	width: 75%;
+	height: 75%;
+}
+.tamanocompleto{
+	width: 100%;
+	height: 100%;
+}
+
+label.resultClases{
+
+	margin: 5px 5px 5px 5px;
+	padding: 5px 5px 5px 5px;
+	background-color: #3ea5d7;
+	color: #ffffff; 
+	border-radius: 5px;
+	font-weight: bold;
+}
