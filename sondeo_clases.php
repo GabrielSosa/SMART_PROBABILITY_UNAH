@@ -121,11 +121,15 @@
 
     <!--Evaluacion de Clase-->
     <script type="text/javascript">
+        
         var idClase=0;
+        
 
         function EstadoEventoEvaluar(estado){
             $('#comboboxClases').attr("disabled", estado);
             $('#btnEvaluarClase').attr("disabled", estado);
+            $('#btnEvaluarTotal').attr("disabled", estado);
+            $('#btnEliminarHistorial').attr("disabled", estado);
         }
 
         function ObtenerIdClase(codigo_clase){
@@ -176,6 +180,7 @@
             location.reload();
         }
         
+        //Variables que cuentan el total de APROBADAS, REPROBADAS Y DESCONODIDAS
         var ConAPR = 0;
         var ConRPB = 0;
         var ConDES = 0;
