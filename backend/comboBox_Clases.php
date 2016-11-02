@@ -16,7 +16,7 @@
 		      
 	     /*Imprimimos los departamentos de honduras disponibles en la BD
 	      y ponemos como valor ID_CLASE en Value */
-		echo '<option value='.utf8_encode($fila['ID_CLASE']).'>'.utf8_encode($fila['NOMBRE_CLASE']).'</option>'; 
+		echo '<option id = '.utf8_encode($fila['ID_CLASE']).' value='.utf8_encode($fila['ID_CLASE']).'>'.utf8_encode($fila['NOMBRE_CLASE']).'</option>'; 
 	
 		}
 

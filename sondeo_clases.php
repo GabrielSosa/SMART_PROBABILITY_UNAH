@@ -58,23 +58,39 @@
                                 <div class="row">
                                     <div class="col-xs-12 col-md-3">
                                         <h3>Seleccione una clase</h3>
-                                        <?php include("backend/comboBox_Clases.php") ?>
+                                        <div id="ComboBoxResultado">
+                                            <?php include("backend/comboBox_Clases.php") ?>
+                                        </div>
                                         <br>
-                                        <button id="btnEvaluarClase" class="btn btn-default" onclick="EjecutarEvaluacion()">Evaluar</button>
-                                        <button id="btnEliminarHistorial" class="btn btn-default" onclick="EliminarHistorial()">Eliminar Historial</button>
+                                        <button id="btnEvaluarClase" class="btn btn-default" onclick="EjecutarEvaluacion()">Añadir Clase</button>
+                                        <button id="btnEvaluarTotal" class="btn btn-default" onclick="ImprimirTodo()">Evaluar</button>
+                                        <button id="btnEliminarHistorial" class="btn btn-default" onclick="eliminarTodasFilas()">Eliminar</button>
                                     </div>
                                     <div class="col-xs-12 col-md-9">
                                         <h3 class="text-center">HISTORIAL DE CONSULTAS</h3>
-                                        <p><strong>APR:</strong>APROBADA<br><strong>RPB:</strong>REPROBADA<br><strong>UNKNOWN:</strong>RESULTADO INDETERMINADO<br></p>
-                                        <div id="contenedorResultados">
-                                           <!--Se Mostrara los resultados consultados por el usuario-->
-                                        </div>
-                                    </div
-                                </div>
-                            
-                            </div> 
+                                       
+                                       <div class="col-xs-12 col-md-12">
+                                       
+                                       <table id="tabla" class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <!--<td>Nº</td>-->
+                                                    <td>Codigo</td>
+                                                    <td>Asignatura</td>
+                                                    <td>Periodo</td>
+                                                    <td>Carrera</td>
+                                                </tr>
+                                            </thead>
 
-                           
+                                        </table>    
+                                    </div>
+
+                                    <div id="contenedorResultados">
+                                           <!--Se Mostrara los resultados consultados por el usuario-->
+                                    </div>
+
+                                </div>
+                            </div> 
                         </div>
                     </div>
                 </div>
@@ -122,10 +138,12 @@
             return nombreClase;
         }
 
-        function EliminarHistorial (){
-    
-            $("#contenedorResultados").empty();
-        }
+
+
+        var cont=0;
+        var id_fila_selected=[];
+        var arreglo = new Array();
+        var valor = '';
 
         function EjecutarEvaluacion(){
 
@@ -137,14 +155,64 @@
                 url:'backend/rslt_codigo_clase.php',
                 data:'idClase='+idClase,
                 success:function(data){
-                  var valor = eval(data);
-                  var claseLabel =$('<label class="resultClases">'+ObtenerNombreClaseComboBoxClases()+':'+valor+'</label>');
-                  $("#contenedorResultados").append(claseLabel);
+                  valor = eval(data);
+                  cont++;
+                  var fila='<tr><td>'+idClase+'</td><td>'+ObtenerNombreClaseComboBoxClases()+'</td><td>2</td><td>Ingenieria en sistemas</td></tr>';
+                  $('#tabla').append(fila);
+                  arreglo.push(valor);
+                  $('#'+idClase).remove();
+                  idClase = 0;
                   EstadoEventoEvaluar(false);
                 }
               });
           }
         }
+
+        function eliminarTodasFilas(){
+            $('#tabla tbody tr').each(function(){
+            $(this).remove();
+            });
+            $("#contenedorResultados").empty();
+            location.reload();
+        }
+        
+        var ConAPR = 0;
+        var ConRPB = 0;
+        var ConDES = 0;
+
+        function ImprimirTodo(){
+            var TotalClase = ResultadoTotal();
+            $("#contenedorResultados").empty();
+            var claseLabel =$('<label class="resultClases">EL RESULTADO ES: '+TotalClase+'</label>');
+            $("#contenedorResultados").append(claseLabel);
+            EstadoEventoEvaluar(false);
+        }
+
+       
+        function ResultadoTotal(){
+            for (var i = 0; i < arreglo.length; i++) {
+                if(arreglo[i]=='APR'){
+                 ConAPR ++;
+                }else if(arreglo[i]=='RPB'){ 
+                    ConRPB ++;
+                }
+                else{
+                    ConDES++;
+                }
+            }
+            
+            //Verificar que resultado hay mas valores
+            if(ConAPR>ConRPB && ConAPR>ConDES){
+                return 'APROBADO';
+            }else if(ConRPB>ConAPR && ConRPB>ConDES){
+                return 'REPROBADO';
+            }else{
+                return 'DESCONOCIDO';
+            }
+
+            return 'DESCONOCIDO';
+        }
+
     </script>
 
 </body>

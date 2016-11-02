@@ -21,3 +21,4 @@
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/font-awesome.css" rel="stylesheet">
     <link href="css/bootstrap-social.css" rel="stylesheet">
+    <link href="css/gabo_tabla.css" rel="stylesheet" >

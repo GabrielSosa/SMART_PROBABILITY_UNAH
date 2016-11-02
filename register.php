@@ -107,7 +107,7 @@
                                     <div class="form-group">
                                         <label for="inputPassword" class="col-sm-2 control-label">Contraseña</label>
                                         <div class="col-sm-10">
-                                          <input type="text" pattern=".{6,}" title="SEIS O MÁS CARACTERES" name="txtpass" class="form-control" id="inputPassword" placeholder="Contraseña" required>
+                                          <input type="password" pattern=".{6,}" title="SEIS O MÁS CARACTERES" name="txtpass" class="form-control" id="inputPassword" placeholder="Contraseña" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
